@@ -1,0 +1,25 @@
+body{
+    margin: 0;
+    padding: 0;
+
+}
+
+/* Selectores básicos */
+
+h2{
+    color: #333;
+    text-align: center;
+}
+
+p{
+    color: #666;
+
+}
+
+
+#localOutput{
+        Color: gray;
+        font-size: 18px;   
+        margin-top: 10px;
+
+}
