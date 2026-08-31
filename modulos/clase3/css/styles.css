@@ -176,7 +176,6 @@ body.active .theme-navbar {
 }
 
 body.active .card,
-body.active .card-body,
 body.active .card-footer {
   background-color: #1e1e1e;
   color: #f3f3f3;
