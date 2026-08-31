@@ -14,8 +14,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="./modulos/clase3/css/styles.css" rel="stylesheet" />
-    <link href="./modulos/clase3/css/style2.css" rel="stylesheet" />
+    <link href="./clase3/css/styles.css" rel="stylesheet" />
+    <link href="./clase3/css/style2.css" rel="stylesheet" />
   </head>
   <body class="light-mode">
     <!-- Responsive navbar-->
@@ -59,15 +59,15 @@
     <!-- Page Content-->
     <div>   
             <h3>Local Storage</h3>
-            <label for="LocalStorage">Nombre:</label>
+            <label for="localStorage">Nombre:</label>
             <input type="text" id="localStorage" />
-            <button onclick="savelLocal()">Guardar en Local Storage</button>
+            <button onclick="saveLocal()">Guardar en Local Storage</button>
             <p id="localOutput">hola</p>
     </div>
 
     <div>   
             <h3>Session Storage</h3>
-            <label for="SessionStorage">Nombre:</label>
+            <label for="sessionStorage">Nombre:</label>
             <input type="text" id="sessionStorage" />
             <button onclick="saveSession()">Guardar en Session Storage</button>
             <p id="sessionOutput"></p>
@@ -81,6 +81,8 @@
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
-     <script src="./modulos/clase3/js/scripts.js"></script> 
+     <script src="../modulos/clase3/js/scripts.js"></script>
+     <script src="../modulos/clase3/js/script2.js"></script>
+
   </body>
 </html>
