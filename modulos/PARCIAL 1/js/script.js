@@ -6,7 +6,7 @@ const expensesList = document.getElementById('expensesList');
       const dailyExpenseForm = document.getElementById('dailyExpenseForm');
       const dailyExpensesList = document.getElementById('dailyExpensesList');
       const emptyDailyState = document.getElementById('emptyDailyState');
-
+      const STORAGE_KEY = 'finanzas-app-data';
       let dailyExpenses = [];
       let initialBalance = 0;
 
@@ -121,7 +121,7 @@ const expensesList = document.getElementById('expensesList');
         saveData();
       });
 
-
+      document.querySelector('.setup-panel').addEventListener('input', saveData);
 
       saveConfigurationButton.addEventListener('click', () => {
         const income = Number(document.getElementById('monthlyIncome').value);
@@ -148,7 +148,7 @@ const expensesList = document.getElementById('expensesList');
         document.getElementById('dashboardSummary').textContent = `${expenses.length} gasto${expenses.length === 1 ? '' : 's'} registrado${expenses.length === 1 ? '' : 's'}`;
         initialBalance = balance;
         renderDailyExpenses();
-       
+        saveData();
         dashboard.hidden = false;
         formMessage.textContent = 'Configuración guardada correctamente.';
         formMessage.className = 'form-message success-message';
@@ -166,7 +166,7 @@ const expensesList = document.getElementById('expensesList');
         document.getElementById('dailyMessage').textContent = 'Gasto diario agregado.';
         document.getElementById('dailyMessage').className = 'form-message success-message';
         renderDailyExpenses();
-       
+        saveData();
       });
 
       dailyExpensesList.addEventListener('click', (event) => {
@@ -177,4 +177,18 @@ const expensesList = document.getElementById('expensesList');
         saveData();
       });
 
-     
+      document.getElementById('restoreButton').addEventListener('click', () => {
+        localStorage.removeItem(STORAGE_KEY);
+        window.location.reload();
+      });
+
+      const storedData = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+      if (storedData) {
+        document.getElementById('monthlyIncome').value = storedData.income || '';
+        if (storedData.expenses?.length) {
+          expensesList.innerHTML = '';
+          storedData.expenses.forEach(createExpenseRow);
+        }
+        dailyExpenses = Array.isArray(storedData.dailyExpenses) ? storedData.dailyExpenses : [];
+        saveConfigurationButton.click();
+      }
