@@ -87,35 +87,43 @@
         </div>
         <p id="dashboardSummary" class="dashboard-summary"></p>
       </div>
-      <div class="cards-grid">
-      <article class="card finance-card">
-  <div class="card-body">
-    <p class="card-label">Ingresos Totales</p>
-    <h2 id="incomeCard">$0</h2>
-    <p class="card-detail">Balance mensual disponible</p>
-  </div>
-</article>
-<article class="card finance-card">
-  <div class="card-body">
-    <p class="card-label">Gastos Fijos</p>
-    <h2 id="expensesCard">$0</h2>
-    <p class="card-detail">Total a mi cargo</p>
-  </div>
-</article>
-<article class="card finance-card savings-card">
-  <div class="card-body">
-    <p class="card-label">Capacidad de Ahorro</p>
-    <h2 id="balanceCard">$0</h2>
-    <p class="card-detail">Balance inicial disponible</p>
-  </div>
-</article>
-<article class="card finance-card">
-  <div class="card-body">
-    <p class="card-label">Gastos Variables del Mes</p>
-    <h2 id="variableExpensesCard">$0</h2>
-    <p class="card-detail">Gastos diarios acumulados</p>
-  </div>
-</article>
+      <div class="cards-grid row g-4">
+        <div class="col-md-6">
+          <article class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h3 class="card-title">Ingresos Totales</h3>
+              <h2 id="incomeCard" class="card-value">$0</h2>
+              <p class="card-text">Balance mensual disponible</p>
+            </div>
+          </article>
+        </div>
+        <div class="col-md-6">
+          <article class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h3 class="card-title">Gastos Fijos</h3>
+              <h2 id="expensesCard" class="card-value">$0</h2>
+              <p class="card-text">Total a mi cargo</p>
+            </div>
+          </article>
+        </div>
+        <div class="col-md-6">
+          <article class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h3 class="card-title">Capacidad de Ahorro</h3>
+              <h2 id="balanceCard" class="card-value">$0</h2>
+              <p class="card-text">Balance inicial disponible</p>
+            </div>
+          </article>
+        </div>
+        <div class="col-md-6">
+          <article class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h3 class="card-title">Gastos Variables del Mes</h3>
+              <h2 id="variableExpensesCard" class="card-value">$0</h2>
+              <p class="card-text">Gastos diarios acumulados</p>
+            </div>
+          </article>
+        </div>
       </div>
 
       <section class="daily-expenses-section">

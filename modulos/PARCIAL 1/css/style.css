@@ -3,7 +3,7 @@
 :root {
 	--ink: #17221d;
 	--muted: #776b76;
-	--green: #6b2468;
+	--purple: #6b2468;
 	--mint: #efdced;
 	--cream: #f7f8f3;
 	--line: #e0e8e1;
@@ -40,7 +40,7 @@ body {
 .eyebrow,
 .card-label {
 	margin: 0 0 8px;
-	color: var(--green);
+	color: var(--purple);
 	font-size: 0.75rem;
 	font-weight: 700;
 	letter-spacing: 0.12em;
@@ -62,7 +62,7 @@ h1 {
 	padding: 8px 14px;
 	border: 1px solid #c8ded0;
 	border-radius: 999px;
-	color: var(--green);
+	color: var(--purple);
 	background: rgba(255, 255, 255, 0.6);
 	font-size: 0.8rem;
 	font-weight: 700;
@@ -101,7 +101,7 @@ input {
 }
 
 input:focus {
-	border-color: var(--green);
+	border-color: var(--purple);
 	outline: 3px solid rgba(36, 107, 80, 0.12);
 }
 
@@ -146,7 +146,7 @@ select {
 .shared-switch input {
 	width: 18px;
 	height: 18px;
-	accent-color: var(--green);
+	accent-color: var(--purple);
 }
 
 .shared-options {
@@ -155,7 +155,7 @@ select {
 	grid-template-columns: 1fr 1fr;
 	gap: 14px;
 	padding: 14px;
-	border-left: 3px solid var(--green);
+	border-left: 3px solid var(--purple);
 	border-radius: 0 10px 10px 0;
 	background: var(--mint);
 }
@@ -214,7 +214,7 @@ select {
 
 .add-button {
 	padding: 10px 14px;
-	color: var(--green);
+	color: var(--purple);
 	background: var(--mint);
 	white-space: nowrap;
 }
@@ -256,7 +256,7 @@ select {
 	margin: 30px 0 0 auto;
 	padding: 14px 22px;
 	color: white;
-	background: var(--green);
+	background: var(--purple);
 }
 
 .save-button:hover,
@@ -276,7 +276,7 @@ select {
 }
 
 .success-message {
-	color: var(--green);
+	color: var(--purple);
 }
 
 .dashboard {
@@ -287,59 +287,10 @@ select {
 	display: none;
 }
 
-.cards-grid {
-	display: grid;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
-	gap: 20px;
-}
-
-.finance-card {
-	min-height: 210px;
-	overflow: hidden;
-	border: 1px solid var(--line);
-	border-radius: 18px;
-	background: rgba(255, 255, 255, 0.88);
-	box-shadow: 0 14px 30px rgba(36, 67, 49, 0.08);
-	transition: transform 180ms ease, box-shadow 180ms ease;
-}
-
-.finance-card:hover {
-	transform: translateY(-4px);
-	box-shadow: 0 18px 36px rgba(36, 67, 49, 0.14);
-}
-
-.finance-card:nth-child(2) {
-	background: var(--green);
-	color: white;
-}
-
-.finance-card:nth-child(2) .card-label,
-.finance-card:nth-child(2) .card-detail {
-	color: #c5e5d3;
-}
-
-.card-body {
-	display: flex;
-	min-height: 210px;
-	flex-direction: column;
-	justify-content: center;
-	padding: 32px;
-}
-
-.card-label {
-	color: var(--muted);
-}
-
-h2 {
+.card-value {
 	margin-bottom: 18px;
 	font-size: clamp(1.8rem, 4vw, 2.8rem);
 	letter-spacing: -0.05em;
-}
-
-.card-detail {
-	margin: 0;
-	color: var(--muted);
-	font-size: 0.95rem;
 }
 
 @media (max-width: 600px) {
@@ -378,12 +329,4 @@ h2 {
 		justify-self: end;
 	}
 
-	.cards-grid {
-		grid-template-columns: 1fr;
-	}
-
-	.card-body {
-		min-height: 180px;
-		padding: 26px;
-	}
 }
