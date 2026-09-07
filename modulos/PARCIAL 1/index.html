@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Finanzas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="./js/script.js" defer></script>
+  </head>
+  <body>
+    <header class="page-header">
+        <div>
+          <p class="eyebrow">Panel personal</p>
+          <h1>Finanzas</h1>
+        </div>
+        <button type="button" class="btn secondary-button" id="restoreButton">Resetear / Reconfigurar</button>
+    </header>
+
+    <main class="setup-panel">
+      <section class="setup-section">
+        <h2>Ingresos</h2>
+        <label for="monthlyIncome">Ingresos mensuales</label>
+        <div class="input-with-prefix">
+          <span>$</span>
+          <input type="number" id="monthlyIncome" min="0" step="1000" placeholder="0" required>
+        </div>
+      </section>
+
+      <section class="setup-section expenses-section">
+        <div class="section-heading">
+          <div>
+
+            <h2>Gastos fijos mensuales</h2>
+          </div>
+          <button type="button" class="add-button" id="addExpenseButton">+ Agregar gasto</button>
+        </div>
+        <p class="section-help">Registra cada gasto y cuánto pagas tú cuando es compartido.</p>
+
+        <div id="expensesList" class="expenses-list">
+          <div class="expense-row">
+            <div class="field-group">
+              <label>Nombre del gasto</label>
+              <input type="text" class="expense-name" placeholder="Ej. Arriendo" required>
+            </div>
+            <div class="field-group">
+              <label>Valor total</label>
+              <div class="input-with-prefix">
+                <span>$</span>
+                <input type="number" class="expense-total" min="0" step="1000" placeholder="0" required>
+              </div>
+            </div>
+            <label class="shared-switch">
+              <input type="checkbox" class="expense-is-shared">
+              <span>¿Es compartido?</span>
+            </label>
+            <div class="shared-options" hidden>
+              <div class="shared-mode">
+                <label>Calcular aporte por</label>
+                <select class="shared-method">
+                  <option value="percentage">% de aporte personal</option>
+                  <option value="people">Cantidad de personas</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <label class="shared-value-label">Aporte personal (%)</label>
+                <div class="input-with-suffix">
+                  <input type="number" class="shared-value" min="1" max="100" step="1" placeholder="50">
+                  <span class="shared-value-suffix">%</span>
+                </div>
+              </div>
+            </div>
+            <button type="button" class="remove-button" aria-label="Quitar gasto" title="Quitar gasto">&times;</button>
+          </div>
+        </div>
+      </section>
+
+      <button type="button" class="save-button" id="saveConfigurationButton">Guardar configuración</button>
+      <p class="form-message" id="formMessage" role="status"></p>
+    </main>
+
+    <section class="dashboard" id="dashboard" hidden>
+      <div class="dashboard-heading">
+        <div>
+          <p class="eyebrow">Resumen</p>
+          <h2>Dashboard</h2>
+        </div>
+        <p id="dashboardSummary" class="dashboard-summary"></p>
+      </div>
+      <div class="cards-grid">
+      <article class="card finance-card">
+  <div class="card-body">
+    <p class="card-label">Ingresos Totales</p>
+    <h2 id="incomeCard">$0</h2>
+    <p class="card-detail">Balance mensual disponible</p>
+  </div>
+</article>
+<article class="card finance-card">
+  <div class="card-body">
+    <p class="card-label">Gastos Fijos</p>
+    <h2 id="expensesCard">$0</h2>
+    <p class="card-detail">Total a mi cargo</p>
+  </div>
+</article>
+<article class="card finance-card savings-card">
+  <div class="card-body">
+    <p class="card-label">Capacidad de Ahorro</p>
+    <h2 id="balanceCard">$0</h2>
+    <p class="card-detail">Balance inicial disponible</p>
+  </div>
+</article>
+<article class="card finance-card">
+  <div class="card-body">
+    <p class="card-label">Gastos Variables del Mes</p>
+    <h2 id="variableExpensesCard">$0</h2>
+    <p class="card-detail">Gastos diarios acumulados</p>
+  </div>
+</article>
+      </div>
+
+      <section class="daily-expenses-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Registro diario</p>
+            <h2>Gastos del día</h2>
+          </div>
+        </div>
+        <form class="daily-expense-form" id="dailyExpenseForm">
+          <div class="field-group">
+            <label for="dailyConcept">Concepto</label>
+            <input type="text" id="dailyConcept" placeholder="Ej. Almuerzo" required>
+          </div>
+          <div class="field-group">
+            <label for="dailyAmount">Monto</label>
+            <div class="input-with-prefix">
+              <span>$</span>
+              <input type="number" id="dailyAmount" min="1" step="1000" placeholder="0" required>
+            </div>
+          </div>
+          <div class="field-group">
+            <label for="dailyCategory">Categoría</label>
+            <select id="dailyCategory" required>
+              <option value="Comida">Comida</option>
+              <option value="Ocio">Ocio</option>
+              <option value="Transporte">Transporte</option>
+              <option value="Varios">Varios</option>
+            </select>
+          </div>
+          <button type="submit" class="add-daily-button">Agregar gasto</button>
+        </form>
+        <p class="form-message" id="dailyMessage" role="status"></p>
+        <div class="daily-expenses-list" id="dailyExpensesList">
+          <p class="empty-state" id="emptyDailyState">Todavía no has registrado gastos diarios.</p>
+        </div>
+      </section>
+    </section>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  </body>
+</html>
