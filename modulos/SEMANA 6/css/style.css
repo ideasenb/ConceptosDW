@@ -19,14 +19,14 @@ h1 {
     box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
 }
 
+#arrayInicialTexto,
 #arrayResultadoTexto {
-    background-color: #e8f5e9;
-    border: 1px solid #c8e6c9;
-    color: #1b5e20;
     border-radius: 8px;
     word-break: break-all;
 }
 
-.table th {
-    font-weight: 600;
+#arrayResultadoTexto {
+    background-color: #e8f5e9;
+    border: 1px solid #c8e6c9;
+    color: #1b5e20;
 }

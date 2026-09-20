@@ -39,38 +39,15 @@
         </form>
 
 
-        <div id="contenedorRespuesta" class="card p-4 shadow-sm mb-4" style="display: none;">
-            <h5 class="fw-bold mb-2">Resultado del Array modificado:</h5>
-            <p class="text-muted small mb-2">El array ha pasado por la función <code>procesarSolicitud()</code>:</p>
-            <div class="alert alert-success font-monospace fs-5 mb-0" id="arrayResultadoTexto">
-
+        <div id="contenedorRespuesta" class="card p-4 shadow-sm" style="display: none;">
+            <h5 class="fw-bold mb-3">Resultado de la Operación</h5>
+            <div class="mb-3">
+                <span class="text-muted fw-semibold d-block mb-1">Array inicial (Usuario + Libros):</span>
+                <div class="alert alert-secondary font-monospace mb-0" id="arrayInicialTexto"></div>
             </div>
-        </div>
-
-
-        <div class="card p-4 shadow-sm">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <h5 class="fw-bold mb-0">Historial de Solicitudes Procesadas</h5>
-                <button type="button" class="btn btn-sm btn-outline-secondary" id="btnLimpiarStorage"
-                    title="Borrar historial guardado">Limpiar historial</button>
-            </div>
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped align-middle mb-0">
-                    <thead class="table-dark">
-                        <tr>
-                            <th style="width: 50px;" class="text-center">#</th>
-                            <th>Usuario</th>
-                            <th>Libros Solicitados</th>
-                            <th>Array Modificado (procesarSolicitud)</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tablaCuerpo">
-                        <tr id="filaVacia">
-                            <td colspan="4" class="text-center text-muted py-3">No hay solicitudes ingresadas todavía.
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div>
+                <span class="text-success fw-semibold d-block mb-1">Array modificado (con shift, unshift y push):</span>
+                <div class="alert alert-success font-monospace fs-5 mb-0" id="arrayResultadoTexto"></div>
             </div>
         </div>
 
