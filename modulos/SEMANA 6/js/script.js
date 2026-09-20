@@ -28,10 +28,7 @@ formulario.addEventListener("submit", function (evento) {
     const nombre = inputNombre.value.trim();
     const librosTexto = inputLibros.value.trim();
 
-    if (!nombre || !librosTexto) {
-        alert("Por favor completa el nombre y al menos un libro.");
-        return;
-    }
+
 
     // Convertimos la lista de libros separados por coma en un arreglo limpio
     const listaLibros = librosTexto
@@ -39,10 +36,6 @@ formulario.addEventListener("submit", function (evento) {
         .map(libro => libro.trim())
         .filter(libro => libro.length > 0);
 
-    if (listaLibros.length === 0) {
-        alert("Por favor ingresa al menos un título de libro válido.");
-        return;
-    }
 
     // 1. Construcción del array inicial con el usuario y los libros
     const arrayInicial = [nombre, ...listaLibros];
