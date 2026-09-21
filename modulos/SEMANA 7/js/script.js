@@ -4,7 +4,7 @@ const stickyImage = document.getElementById("sticky-image");
 document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("scroll", () => {
         const scrollY = window.scrollY;
-        const scaleValue = 1 + (scrollY * 0.00012);
+        const scaleValue = 1 + (scrollY * 0.00005);
 
         if (stickyImage) {
             stickyImage.style.transform = `scale(${scaleValue})`;
@@ -14,12 +14,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // Lógica para la animación reveal-up usando Intersection Observer
     const revealElements = document.querySelectorAll(".reveal-up");
 
-    const revealObserver = new IntersectionObserver((entries, observer) => {
+    const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
                 entry.target.classList.add("active");
-                // Deja de observar para que la animación ocurra una sola vez al aparecer
-                observer.unobserve(entry.target);
+            } else {
+                // Remueve la clase active al salir de la pantalla para que la animación se reinicie
+                entry.target.classList.remove("active");
             }
         });
     }, {
