@@ -3,10 +3,13 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import MiComponente from './componets/counter.jsx'
+import Triki from './componets/tutorial/triki.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
     <MiComponente />
+    <Triki />
+
   </StrictMode>,
 )

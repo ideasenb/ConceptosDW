@@ -1,0 +1,104 @@
+.game {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 28px;
+  margin: 32px auto;
+  padding: 24px;
+  max-width: 440px;
+  background-color: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+  .game {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+}
+
+.game-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.status {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-h);
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.board-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.board-row:last-child {
+  margin-bottom: 0;
+}
+
+.square {
+  width: 58px;
+  height: 58px;
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+  user-select: none;
+}
+
+.square:hover {
+  border-color: var(--accent);
+}
+
+.square:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.game-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.game-info ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.game-info button {
+  padding: 6px 12px;
+  font-size: 13px;
+  color: var(--text);
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.game-info button:hover {
+  background-color: var(--border);
+  color: var(--text-h);
+}
