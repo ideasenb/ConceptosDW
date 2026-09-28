@@ -1,0 +1,35 @@
+.counter-container {
+  max-width: 320px;
+  margin: 24px auto;
+  padding: 20px;
+  text-align: center;
+  background-color: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.counter-text {
+  font-size: 18px;
+  color: var(--text);
+  margin: 0 0 14px 0;
+}
+
+.counter-value {
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.counter-button {
+  padding: 8px 18px;
+  font-size: 15px;
+  color: #ffffff;
+  background-color: var(--accent);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.counter-button:hover {
+  opacity: 0.88;
+}
