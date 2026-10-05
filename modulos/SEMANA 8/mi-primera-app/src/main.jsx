@@ -7,8 +7,8 @@ import Triki from './componets/tutorial/triki.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
-    <MiComponente />
+    {/*<App />
+    <MiComponente />*/}
     <Triki />
 
   </StrictMode>,
