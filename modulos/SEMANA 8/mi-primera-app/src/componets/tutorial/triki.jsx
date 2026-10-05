@@ -1,17 +1,24 @@
 import { useState } from 'react';
 import './triki.css';
 
-function Square({ value, onSquareClick }) {
+function Square({ value, onSquareClick, isWinning }) {
     return (
-        <button className="square" onClick={onSquareClick}>
+        <button
+            type="button"
+            className={`square ${value ? `square-${value.toLowerCase()}` : ''} ${isWinning ? 'square-winning' : ''}`.trim()}
+            onClick={onSquareClick}
+        >
             {value}
         </button>
     );
 }
 
 function Board({ xIsNext, squares, onPlay }) {
+    const winnerInfo = calculateWinner(squares);
+    const isDraw = !winnerInfo && squares.every((square) => square !== null);
+
     function handleClick(i) {
-        if (calculateWinner(squares) || squares[i]) {
+        if (winnerInfo || squares[i]) {
             return;
         }
         const nextSquares = squares.slice();
@@ -23,31 +30,45 @@ function Board({ xIsNext, squares, onPlay }) {
         onPlay(nextSquares);
     }
 
-    const winner = calculateWinner(squares);
-    let status;
-    if (winner) {
-        status = 'Winner: ' + winner;
-    } else {
-        status = 'Next player: ' + (xIsNext ? 'X' : 'O');
-    }
-
     return (
         <>
-            <div className="status">{status}</div>
-            <div className="board-row">
-                <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-                <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-                <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
+            <div className={`status ${winnerInfo ? 'status-winner' : isDraw ? 'status-draw' : 'status-turn'}`}>
+                {winnerInfo ? (
+                    <>
+                        <span className="status-trophy" aria-hidden="true">🏆</span>
+                        <span>¡Ganador: <strong className={`winner-tag winner-${winnerInfo.winner.toLowerCase()}`}>{winnerInfo.winner}</strong>!</span>
+                    </>
+                ) : isDraw ? (
+                    <>
+                        <span className="status-icon" aria-hidden="true">🤝</span>
+                        <span>¡Partida empatada!</span>
+                    </>
+                ) : (
+                    <>
+                        <span className="status-label">Turno:</span>
+                        <span className={`turn-tag turn-${xIsNext ? 'x' : 'o'}`}>
+                            {xIsNext ? 'X' : 'O'}
+                        </span>
+                    </>
+                )}
             </div>
-            <div className="board-row">
-                <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-                <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-                <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
-            </div>
-            <div className="board-row">
-                <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-                <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-                <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+
+            <div className="board-grid">
+                <div className="board-row">
+                    <Square value={squares[0]} onSquareClick={() => handleClick(0)} isWinning={winnerInfo?.line.includes(0)} />
+                    <Square value={squares[1]} onSquareClick={() => handleClick(1)} isWinning={winnerInfo?.line.includes(1)} />
+                    <Square value={squares[2]} onSquareClick={() => handleClick(2)} isWinning={winnerInfo?.line.includes(2)} />
+                </div>
+                <div className="board-row">
+                    <Square value={squares[3]} onSquareClick={() => handleClick(3)} isWinning={winnerInfo?.line.includes(3)} />
+                    <Square value={squares[4]} onSquareClick={() => handleClick(4)} isWinning={winnerInfo?.line.includes(4)} />
+                    <Square value={squares[5]} onSquareClick={() => handleClick(5)} isWinning={winnerInfo?.line.includes(5)} />
+                </div>
+                <div className="board-row">
+                    <Square value={squares[6]} onSquareClick={() => handleClick(6)} isWinning={winnerInfo?.line.includes(6)} />
+                    <Square value={squares[7]} onSquareClick={() => handleClick(7)} isWinning={winnerInfo?.line.includes(7)} />
+                    <Square value={squares[8]} onSquareClick={() => handleClick(8)} isWinning={winnerInfo?.line.includes(8)} />
+                </div>
             </div>
         </>
     );
@@ -72,13 +93,22 @@ export default function Game() {
     const moves = history.map((squares, move) => {
         let description;
         if (move > 0) {
-            description = 'Go to move #' + move;
+            description = `Ir a jugada #${move}`;
         } else {
-            description = 'Go to game start';
+            description = 'Ir al inicio';
         }
+
+        const isCurrent = move === currentMove;
+
         return (
             <li key={move}>
-                <button onClick={() => jumpTo(move)}>{description}</button>
+                <button
+                    type="button"
+                    className={`history-btn ${isCurrent ? 'history-btn-active' : ''}`}
+                    onClick={() => jumpTo(move)}
+                >
+                    {description}
+                </button>
             </li>
         );
     });
@@ -89,6 +119,7 @@ export default function Game() {
                 <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
             </div>
             <div className="game-info">
+                <h4 className="game-info-title">Historial</h4>
                 <ol>{moves}</ol>
             </div>
         </div>
@@ -109,7 +140,7 @@ function calculateWinner(squares) {
     for (let i = 0; i < lines.length; i++) {
         const [a, b, c] = lines[i];
         if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-            return squares[a];
+            return { winner: squares[a], line: [a, b, c] };
         }
     }
     return null;

@@ -1,78 +1,236 @@
+/* ==========================================================================
+   Triki (Tic-Tac-Toe) - Estilos Modernos y Robustos
+   ========================================================================== */
+
+:root {
+  --triki-x: #9333ea;
+  --triki-o: #0284c7;
+  --triki-gold: #f59e0b;
+  --triki-gold-light: rgba(245, 158, 11, 0.16);
+  --triki-gold-glow: rgba(245, 158, 11, 0.35);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --triki-x: #c084fc;
+    --triki-o: #38bdf8;
+    --triki-gold: #fbbf24;
+    --triki-gold-light: rgba(251, 191, 36, 0.18);
+    --triki-gold-glow: rgba(251, 191, 36, 0.4);
+  }
+}
+
+/* Contenedor principal del juego */
 .game {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   gap: 28px;
-  margin: 32px auto;
+  margin: 28px auto;
   padding: 24px;
-  max-width: 440px;
+  max-width: 480px;
   background-color: var(--code-bg);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
   box-sizing: border-box;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 520px) {
   .game {
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    padding: 18px;
+    margin: 20px 12px;
   }
 }
 
+/* Sección del tablero */
 .game-board {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/* Barra de estado (Turno / Ganador / Empate) */
 .status {
-  font-size: 16px;
+  min-height: 42px;
+  margin-bottom: 16px;
+  padding: 6px 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--text-h);
-  margin-bottom: 14px;
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
   text-align: center;
+  transition: all 0.25s ease;
+  user-select: none;
+}
+
+.status-label {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* Indicador de turno */
+.turn-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.turn-tag.turn-x {
+  background-color: var(--accent-bg);
+  color: var(--triki-x);
+  border: 1px solid var(--accent-border);
+}
+
+.turn-tag.turn-o {
+  background-color: rgba(2, 132, 199, 0.12);
+  color: var(--triki-o);
+  border: 1px solid rgba(2, 132, 199, 0.35);
+}
+
+/* Ganador destacado de forma atractiva */
+.status.status-winner {
+  background: linear-gradient(135deg, var(--triki-gold-light), var(--accent-bg));
+  border: 1.5px solid var(--triki-gold);
+  color: var(--text-h);
+  box-shadow: 0 0 16px var(--triki-gold-glow), 0 4px 10px rgba(0, 0, 0, 0.05);
+  animation: winnerPop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275), winnerPulse 2s ease-in-out infinite alternate;
+}
+
+.status-trophy {
+  font-size: 20px;
+  display: inline-block;
+  animation: trophyBounce 0.9s ease-in-out infinite alternate;
+}
+
+.winner-tag {
+  font-weight: 800;
+}
+
+.winner-tag.winner-x {
+  color: var(--triki-x);
+}
+
+.winner-tag.winner-o {
+  color: var(--triki-o);
+}
+
+/* Estado de empate */
+.status.status-draw {
+  background-color: var(--bg);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.status-icon {
+  font-size: 18px;
+}
+
+/* Contenedor del tablero (matriz 3x3) */
+.board-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.03);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .board-grid {
+    background-color: rgba(255, 255, 255, 0.02);
+  }
 }
 
 .board-row {
   display: flex;
-  gap: 6px;
-  margin-bottom: 6px;
+  gap: 8px;
 }
 
-.board-row:last-child {
-  margin-bottom: 0;
-}
-
+/* Cada casilla del tablero */
 .square {
-  width: 58px;
-  height: 58px;
+  width: 62px;
+  height: 62px;
   background-color: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--text-h);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  font-size: 28px;
+  font-weight: 800;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: border-color 0.15s ease, background-color 0.15s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+  transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
   user-select: none;
 }
 
+/* Efectos al pasar el cursor y pulsar */
 .square:hover {
   border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
 }
 
-.square:focus {
-  outline: none;
-  border-color: var(--accent);
+.square:active {
+  transform: translateY(0) scale(0.96);
 }
 
+.square:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Colores para las fichas */
+.square.square-x {
+  color: var(--triki-x);
+}
+
+.square.square-o {
+  color: var(--triki-o);
+}
+
+/* Resaltado de las 3 casillas ganadoras */
+.square.square-winning {
+  background: linear-gradient(135deg, var(--triki-gold-light), var(--accent-bg));
+  border-color: var(--triki-gold);
+  box-shadow: 0 0 14px var(--triki-gold-glow);
+  transform: scale(1.04);
+  animation: winningCellPulse 1.8s ease-in-out infinite;
+  z-index: 2;
+}
+
+/* Panel de historial / información */
 .game-info {
   display: flex;
   flex-direction: column;
+  min-width: 145px;
+}
+
+.game-info-title {
+  margin: 0 0 10px 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--text);
+  text-align: left;
 }
 
 .game-info ol {
@@ -82,23 +240,99 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  max-height: 200px;
+  max-height: 220px;
   overflow-y: auto;
+  padding-right: 4px;
 }
 
-.game-info button {
-  padding: 6px 12px;
+/* Barra de desplazamiento suave para el historial */
+.game-info ol::-webkit-scrollbar {
+  width: 4px;
+}
+
+.game-info ol::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.game-info ol::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+/* Botones del historial de jugadas */
+.history-btn {
+  width: 100%;
+  padding: 7px 12px;
   font-size: 13px;
+  font-weight: 500;
   color: var(--text);
   background-color: var(--bg);
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
+  text-align: left;
   transition: all 0.15s ease;
   white-space: nowrap;
 }
 
-.game-info button:hover {
+.history-btn:hover {
   background-color: var(--border);
   color: var(--text-h);
+  border-color: var(--text);
+  transform: translateX(2px);
+}
+
+.history-btn.history-btn-active {
+  background-color: var(--accent-bg);
+  border-color: var(--accent);
+  color: var(--text-h);
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* ==========================================================================
+   Animaciones del ganador
+   ========================================================================== */
+
+@keyframes winnerPop {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  60% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes winnerPulse {
+  0% {
+    box-shadow: 0 0 10px var(--triki-gold-glow), 0 2px 5px rgba(0, 0, 0, 0.04);
+  }
+  100% {
+    box-shadow: 0 0 20px var(--triki-gold-glow), 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+}
+
+@keyframes trophyBounce {
+  0% {
+    transform: translateY(0) rotate(-6deg);
+  }
+  100% {
+    transform: translateY(-3px) rotate(6deg) scale(1.15);
+  }
+}
+
+@keyframes winningCellPulse {
+  0%, 100% {
+    transform: scale(1.04);
+    box-shadow: 0 0 10px var(--triki-gold-glow);
+  }
+  50% {
+    transform: scale(1.07);
+    box-shadow: 0 0 18px var(--triki-gold-glow);
+  }
 }
