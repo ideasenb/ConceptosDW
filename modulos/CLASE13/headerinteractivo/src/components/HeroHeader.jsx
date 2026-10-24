@@ -26,7 +26,7 @@ export default function HeroHeader() {
 
                 <div className="hero-content">
                     <h1 className="hero-title">
-                        Hi, my name is <span className="hero-gradient-text">[Carlos Cortés]</span>
+                        Hi, my name is <span className="hero-gradient-text">Carlos Cortés</span>
                     </h1>
                     <p className="hero-description">
                         I am a student of multimedia and electronic engineering. I like to be a creative person with strong technical skills.

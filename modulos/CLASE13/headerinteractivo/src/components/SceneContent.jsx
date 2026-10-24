@@ -53,16 +53,16 @@ export default function SceneContent() {
     return (
         <>
             <OrbitControls enableZoom={false} enablePan={false} maxPolarAngle={Math.PI / 2} minPolarAngle={Math.PI / 3} />
-            <ambientLight intensity={0.7} />
-            <directionalLight position={[5, 5, 5]} intensity={1.2} castShadow />
-            <pointLight position={[-5, 5, -5]} intensity={0.5} />
+            <ambientLight intensity={0.75} color="#fef3c7" />
+            <directionalLight position={[5, 5, 5]} intensity={1.3} color="#fffbeb" castShadow />
+            <pointLight position={[-5, 5, -5]} intensity={0.5} color="#fed7aa" />
             <React.Suspense fallback={null}>
                 <AnimatedModel />
             </React.Suspense>
 
             <mesh ref={cubeRef} position={[3.2, 1, -2]}>
                 <boxGeometry args={[0.8, 0.8, 0.8]} />
-                <meshStandardMaterial color="#38bdf8" roughness={0.3} metalness={0.8} />
+                <meshStandardMaterial color="#f97316" roughness={0.35} metalness={0.6} />
             </mesh>
         </>
     )
