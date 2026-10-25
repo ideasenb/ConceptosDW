@@ -43,7 +43,7 @@ export default function HeroHeader() {
                             href="#proyectos"
                             className="hero-btn hero-btn-primary"
                         >
-                            See proyects
+                            See projects
                         </a>
 
                     </div>
