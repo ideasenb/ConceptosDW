@@ -21,7 +21,7 @@ export default function HeroHeader() {
                 <nav className="hero-nav">
 
                     <div className="hero-logo">
-                        PORTAFOLIO <span className="hero-logo-accent">2026</span>
+                        PORTFOLIO <span className="hero-logo-accent">2026</span>
                     </div>
 
                     {/* links de navegación */}
