@@ -26,7 +26,14 @@ export default function HeroHeader() {
 
                     {/* links de navegación */}
                     <div className="hero-nav-links">
-                        <a href="#contacto" className="hero-nav-link">Contact</a>
+                        <a
+                            href="https://www.instagram.com/carloscortesssa"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hero-nav-link"
+                        >
+                            Contact
+                        </a>
                     </div>
                 </nav>
 
@@ -40,12 +47,13 @@ export default function HeroHeader() {
                     </p>
                     <div className="hero-buttons">
                         <a
-                            href="#proyectos"
+                            href="https://ideasenb.github.io/ConceptosDW/modulos/clase3/index.html"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="hero-btn hero-btn-primary"
                         >
                             See projects
                         </a>
-
                     </div>
                 </div>
 
