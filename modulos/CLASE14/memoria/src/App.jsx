@@ -1,16 +1,31 @@
 import { Canvas } from "@react-three/fiber"
+import { Suspense, useEffect, useState } from "react"
+import { getCharacter } from "./api"
+import Tablero from "./components/Tablero"
+
 
 export default function App() {
-  return (
+  const [personajes, setPersonajes] = useState([]);
+  const [volteadas, setVolteadas] = useState([false]);
 
-    <Canvas>
-      <mesh>
-        <torusGeometry args={[1, 0.5, 16, 32]} />
-        <meshPhongMaterial />
-      </mesh>
-      <ambientLight intensity={0.1} />
-      <directionalLight position={[0, 0, 5]} color="red" />
-    </Canvas>
+
+  useEffect(() => {
+    getCharacter(6).then((lista) => {
+      //console.log(lista);
+      setPersonajes(lista);
+    })
+  }, [personajes]);
+
+  const [encontradas, setEncontradas] = useState([]);
+
+
+  return (
+    <canvas camera={{ fov: 45, position: [0, 0, 7] }}>
+      <Tablero cartas={personajes} personajes={personajes} volteadas={volteadas} encontradas={encontradas} alHacerClic={(i) => setVolteadas(i)} />
+    </canvas>
+
+
+
 
   )
 }
